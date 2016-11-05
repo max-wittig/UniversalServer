@@ -46,7 +46,7 @@ public class ServerHandler
             CommandParser commandParser = new CommandParser(commandString);
             commandParser.executeCommands();
 
-            String response = "This is the response";
+            String response = commandParser.getResponse();
             httpExchange.sendResponseHeaders(200, response.length());
             OutputStream os = httpExchange.getResponseBody();
             os.write(response.getBytes());

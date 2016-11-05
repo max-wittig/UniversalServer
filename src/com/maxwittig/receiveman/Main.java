@@ -1,20 +1,31 @@
 package com.maxwittig.receiveman;
 
+import com.maxwittig.receiveman.Server.ServerHandler;
 import com.maxwittig.receiveman.UI.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application
 {
-
+    public static boolean isFXApplication = true;
     public static void main(String[] args)
     {
         // write your code here
-        launch(args);
+        if(args.length > 0 && args[0].equals("nogui"))
+        {
+            isFXApplication = false;
+            ServerHandler serverHandler = new ServerHandler();
+            serverHandler.start();
+
+        }
+        else
+        {
+            launch(args);
+        }
+
     }
 
     @Override

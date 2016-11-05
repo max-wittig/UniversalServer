@@ -1,9 +1,6 @@
 package com.maxwittig.receiveman;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public enum ServerControlType
 {
     START("Start Server"),

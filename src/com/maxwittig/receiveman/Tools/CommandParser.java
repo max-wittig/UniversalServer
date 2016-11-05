@@ -11,6 +11,7 @@ public class CommandParser
 {
     private String commands;
     private ArrayList<CommandHolder> commandArrayList;
+    private String response = "";
 
     public CommandParser(String commands)
     {
@@ -29,14 +30,18 @@ public class CommandParser
                 Class classDefinition = Class.forName("com.maxwittig.receiveman.Commands."+currentCommandName);
                 Command command = (Command) classDefinition.newInstance();
                 command.execute(currentCommandValue);
-
-
+                response = command.getResponse();
             }
             catch (Exception e)
             {
                 e.printStackTrace();
             }
         }
+    }
+
+    public String getResponse()
+    {
+        return response;
     }
 
     private ArrayList<CommandHolder> getCommands()
