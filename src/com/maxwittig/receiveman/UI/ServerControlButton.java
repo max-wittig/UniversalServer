@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 
 public class ServerControlButton extends Button
 {
-    private ServerControlType serverControlType = ServerControlType.STOP;
+    private ServerControlType serverControlType = ServerControlType.START;
 
     public ServerControlButton()
     {
@@ -17,5 +17,10 @@ public class ServerControlButton extends Button
     {
         serverControlType = serverControlType.getNext();
         setText(serverControlType.getText());
+    }
+
+    public ServerControlType getServerControlType()
+    {
+        return serverControlType;
     }
 }
