@@ -5,12 +5,17 @@ import com.maxwittig.receiveman.Server.ServerHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import sun.reflect.Reflection;
+
+import java.util.Set;
 
 public class MainController
 {
     @FXML private ServerControlButton serverControlButton;
     @FXML private ServerStatusLabel serverStatusLabel;
+    @FXML private ListView commandListView;
     private ServerHandler serverHandler;
 
     public MainController()
@@ -35,6 +40,11 @@ public class MainController
                 }
             }
         });
+    }
+
+    private void insertClassesInListView()
+    {
+
     }
 
 

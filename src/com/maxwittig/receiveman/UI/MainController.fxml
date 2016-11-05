@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import com.maxwittig.receiveman.UI.*?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Tab?>
-
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.maxwittig.receiveman.UI.MainController">
    <children>
       <TabPane layoutX="6.0" layoutY="2.0" prefHeight="400.0" prefWidth="593.0" tabClosingPolicy="UNAVAILABLE">
@@ -32,7 +32,11 @@
           </Tab>
             <Tab text="Commands">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                         <Label text="Blacklist"></Label>
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
         </tabs>
