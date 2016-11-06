@@ -1,9 +1,8 @@
-package com.maxwittig.receiveman.Tools;
+package com.maxwittig.universalserver.Tools;
 
 
-import com.maxwittig.receiveman.CommandHolder;
-import com.maxwittig.receiveman.Commands.AlertCommand;
-import com.maxwittig.receiveman.Commands.Command;
+import com.maxwittig.universalserver.CommandHolder;
+import com.maxwittig.universalserver.Commands.Command;
 
 import java.util.ArrayList;
 
@@ -38,7 +37,7 @@ public class CommandParser
             {
                 if(commandBlackList.indexOf(currentCommandName) == -1)
                 {
-                    Class classDefinition = Class.forName("com.maxwittig.receiveman.Commands." + currentCommandName);
+                    Class classDefinition = Class.forName("com.maxwittig.universalserver.Commands." + currentCommandName);
                     Command command = (Command) classDefinition.newInstance();
                     command.execute(currentCommandValue);
                     response = command.getResponse();

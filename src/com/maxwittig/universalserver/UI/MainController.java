@@ -1,9 +1,9 @@
-package com.maxwittig.receiveman.UI;
+package com.maxwittig.universalserver.UI;
 
 
-import com.maxwittig.receiveman.Server.ServerHandler;
-import com.maxwittig.receiveman.ServerStatusType;
-import com.maxwittig.receiveman.Tools.CommandParser;
+import com.maxwittig.universalserver.Server.ServerHandler;
+import com.maxwittig.universalserver.ServerStatusType;
+import com.maxwittig.universalserver.Tools.CommandParser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

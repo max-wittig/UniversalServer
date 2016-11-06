@@ -1,8 +1,7 @@
-package com.maxwittig.receiveman.Commands;
+package com.maxwittig.universalserver.Commands;
 
 
-import com.maxwittig.receiveman.Main;
-import javafx.application.Platform;
+import com.maxwittig.universalserver.Main;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 

@@ -1,5 +1,5 @@
-package com.maxwittig.receiveman.Commands;
-import com.maxwittig.receiveman.Main;
+package com.maxwittig.universalserver.Commands;
+import com.maxwittig.universalserver.Main;
 import javafx.application.Platform;
 
 import java.io.UnsupportedEncodingException;

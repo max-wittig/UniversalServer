@@ -1,7 +1,7 @@
-package com.maxwittig.receiveman.Commands;
+package com.maxwittig.universalserver.Commands;
 
 
-import com.maxwittig.receiveman.Main;
+import com.maxwittig.universalserver.Main;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 

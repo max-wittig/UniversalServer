@@ -1,11 +1,10 @@
-package com.maxwittig.receiveman.Server;
+package com.maxwittig.universalserver.Server;
 
 
-import com.maxwittig.receiveman.Tools.CommandParser;
-import com.maxwittig.receiveman.Tools.StreamHelper;
+import com.maxwittig.universalserver.Tools.CommandParser;
+import com.maxwittig.universalserver.Tools.StreamHelper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.HttpsServer;
 
 import java.io.IOException;
 import java.io.OutputStream;

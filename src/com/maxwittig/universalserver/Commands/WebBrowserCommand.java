@@ -1,4 +1,4 @@
-package com.maxwittig.receiveman.Commands;
+package com.maxwittig.universalserver.Commands;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;

@@ -1,4 +1,4 @@
-package com.maxwittig.receiveman.Tools;
+package com.maxwittig.universalserver.Tools;
 
 
 import java.io.BufferedInputStream;

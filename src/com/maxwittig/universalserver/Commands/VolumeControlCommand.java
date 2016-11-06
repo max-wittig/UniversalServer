@@ -1,4 +1,4 @@
-package com.maxwittig.receiveman.Commands;
+package com.maxwittig.universalserver.Commands;
 
 
 public class VolumeControlCommand extends Command

@@ -1,4 +1,4 @@
-package com.maxwittig.receiveman;
+package com.maxwittig.universalserver;
 
 public class CommandHolder
 {
