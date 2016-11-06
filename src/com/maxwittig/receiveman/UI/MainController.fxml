@@ -8,35 +8,60 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Label?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.maxwittig.receiveman.UI.MainController">
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<AnchorPane maxHeight="200" maxWidth="400" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.maxwittig.receiveman.UI.MainController">
    <children>
-      <TabPane layoutX="6.0" layoutY="2.0" prefHeight="400.0" prefWidth="593.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="ServerStatus">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <ServerControlButton fx:id="serverControlButton" layoutX="248.0" layoutY="69.0" mnemonicParsing="false" text="Start Server" />
-                        <ServerStatusLabel fx:id="serverStatusLabel" alignment="CENTER" layoutY="14.0" prefHeight="16.0" prefWidth="593.0" text="OFF" textAlignment="CENTER">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                        </ServerStatusLabel>
-                     </children></AnchorPane>
+                         <ServerStatusLabel fx:id="serverStatusLabel" alignment="CENTER" text="OFF" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" textAlignment="CENTER">
+                             <font>
+                                 <Font size="28.0" />
+                             </font>
+                         </ServerStatusLabel>
+                        <ServerControlButton fx:id="serverControlButton" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" text="Start Server" />
+
+                     </children>
+              </AnchorPane>
             </content>
           </Tab>
           <Tab text="ServerSettings">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <VBox>
+                      <HBox>
+                          <VBox.margin>
+                              <Insets top="10.0"/>
+                          </VBox.margin>
+                          <Label text="Port">
+                              <HBox.margin>
+                                  <Insets top="5.0" right="5.0" left="5.0"/>
+                              </HBox.margin>
+                          </Label>
+                          <TextField fx:id="portTextField">8000</TextField>
+                      </HBox>
+                  </VBox>
             </content>
           </Tab>
             <Tab text="Commands">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                         <Label text="Blacklist"></Label>
-                     </children>
-                  </AnchorPane>
+                   <AnchorPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                       <children>
+                           <Label alignment="CENTER" text="Blacklist" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" textAlignment="CENTER">
+                               <font>
+                                   <Font size="28.0" />
+                               </font>
+                           </Label>
+                           <VBox AnchorPane.topAnchor="70.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" fx:id="blackListContainerVBox"/>
+                           <Button fx:id="addBlackListEntryButton" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="60.0" AnchorPane.leftAnchor="60.0">Add</Button>
+                       </children>
+                   </AnchorPane>
                </content>
             </Tab>
         </tabs>
