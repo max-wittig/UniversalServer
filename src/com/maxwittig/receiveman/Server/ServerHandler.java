@@ -5,6 +5,7 @@ import com.maxwittig.receiveman.Tools.CommandParser;
 import com.maxwittig.receiveman.Tools.StreamHelper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
+import com.sun.net.httpserver.HttpsServer;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -49,8 +50,17 @@ public class ServerHandler
 
     public void stop()
     {
-        server.stop(1);
-        System.out.println("Server stopped");
+        Thread thread = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                server.stop(1);
+                System.out.println("Server stopped");
+
+            }
+        });
+        thread.start();
 
     }
 
