@@ -13,6 +13,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
+
 public class MainController
 {
     @FXML private ServerControlButton serverControlButton;
@@ -20,6 +25,7 @@ public class MainController
     @FXML private Button addBlackListEntryButton;
     @FXML private VBox blackListContainerVBox;
     @FXML private TextField portTextField;
+    @FXML private Label ipLabel;
     private ServerHandler serverHandler;
     private CommandParser commandParser;
 
@@ -120,6 +126,29 @@ public class MainController
 
             }
         });
+        try
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            Enumeration e = NetworkInterface.getNetworkInterfaces();
+            while(e.hasMoreElements())
+            {
+                NetworkInterface n = (NetworkInterface) e.nextElement();
+                Enumeration ee = n.getInetAddresses();
+                while (ee.hasMoreElements())
+                {
+                    InetAddress i = (InetAddress) ee.nextElement();
+                    if(i instanceof Inet4Address)
+                    {
+                        stringBuilder.append(i.getHostAddress() + "\n");
+                    }
+                }
+            }
+            ipLabel.setText(stringBuilder.toString());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
     }
 

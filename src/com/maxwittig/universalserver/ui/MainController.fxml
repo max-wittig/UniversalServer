@@ -28,6 +28,13 @@
                          </ServerStatusLabel>
                         <ServerControlButton fx:id="serverControlButton" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" text="Start Server" />
 
+                             <Label textAlignment="CENTER" alignment="CENTER" fx:id="ipLabel" text="127.0.0.1" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="120.0">
+                                 <font>
+                                     <Font size="28.0" />
+                                 </font>
+                             </Label>
+
+
                      </children>
               </AnchorPane>
             </content>

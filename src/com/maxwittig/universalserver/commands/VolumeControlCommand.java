@@ -13,10 +13,12 @@ public class VolumeControlCommand extends Command
         if(value.equals("+"))
         {
             new BashCommand().execute("xdotool key --clearmodifiers XF86AudioRaiseVolume");
+            response = "Volume increased";
         }
         else if(value.equals("-"))
         {
             new BashCommand().execute("xdotool key --clearmodifiers XF86AudioLowerVolume");
+            response = "Volume decreased";
         }
 
     }
