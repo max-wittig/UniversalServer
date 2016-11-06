@@ -31,26 +31,27 @@ public class ServerHandler
         return port;
     }
 
-    public void start()
+    public void start() throws Exception
     {
-        try
-        {
-            server = HttpServer.create(new InetSocketAddress(port), 0);
-            server.createContext("/", new CustomHttpHandler());
-            server.setExecutor(null);
-            server.start();
-            System.out.println("Server started on port " + port);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
+        server = HttpServer.create(new InetSocketAddress(port), 0);
+        server.createContext("/", new CustomHttpHandler());
+        server.setExecutor(null);
+        server.start();
+        System.out.println("Server started on port " + port);
+
+    }
+
+    public HttpServer getServer()
+    {
+        return server;
     }
 
     public void stop()
     {
         server.stop(1);
         System.out.println("Server stopped");
+
     }
 
     public CommandParser getCommandParser()

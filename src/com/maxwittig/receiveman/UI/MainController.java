@@ -8,10 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -33,6 +30,13 @@ public class MainController
         serverHandler = new ServerHandler(commandParser);
     }
 
+    private void showError(String message)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR, message);
+        alert.setHeaderText(null);
+        alert.show();
+    }
+
     public void init(Stage stage)
     {
         serverControlButton.setOnAction(new EventHandler<ActionEvent>()
@@ -40,14 +44,25 @@ public class MainController
             @Override
             public void handle(ActionEvent event)
             {
-                serverControlButton.next();
                 switch (serverControlButton.getServerControlType())
                 {
-                    case STOP: serverHandler.start(); serverStatusLabel.setServerStatusType(ServerStatusType.ON);
+                    case START:
+                        try
+                        {
+                            serverHandler.start();
+                            serverStatusLabel.setServerStatusType(ServerStatusType.ON);
+                            serverControlButton.next();
+                        }
+                        catch (Exception e)
+                        {
+                            showError("Could not start server!");
+                        }
                         break;
-                    case START: serverHandler.stop(); serverStatusLabel.setServerStatusType(ServerStatusType.OFF);
+                    case STOP: serverHandler.stop(); serverControlButton.next(); serverStatusLabel.setServerStatusType(ServerStatusType.OFF);
                         break;
                 }
+
+
             }
         });
 

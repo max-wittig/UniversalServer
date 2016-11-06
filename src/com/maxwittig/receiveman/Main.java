@@ -20,8 +20,15 @@ public class Main extends Application
         {
             isFXApplication = false;
             ServerHandler serverHandler = new ServerHandler(new CommandParser());
-            serverHandler.start();
+            try
+            {
+                serverHandler.start();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
 
+            }
         }
         else
         {
