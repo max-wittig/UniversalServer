@@ -1,8 +1,8 @@
-package com.maxwittig.universalserver.Tools;
+package com.maxwittig.universalserver.tools;
 
 
-import com.maxwittig.universalserver.CommandHolder;
-import com.maxwittig.universalserver.Commands.Command;
+import com.maxwittig.universalserver.models.CommandHolder;
+import com.maxwittig.universalserver.commands.Command;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public class CommandParser
             {
                 if(commandBlackList.indexOf(currentCommandName) == -1)
                 {
-                    Class classDefinition = Class.forName("com.maxwittig.universalserver.Commands." + currentCommandName);
+                    Class classDefinition = Class.forName("com.maxwittig.universalserver.commands." + currentCommandName);
                     Command command = (Command) classDefinition.newInstance();
                     command.execute(currentCommandValue);
                     response = command.getResponse();

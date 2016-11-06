@@ -1,10 +1,10 @@
-package com.maxwittig.universalserver;
+package com.maxwittig.universalserver.ui;
 
 
 public enum ServerControlType
 {
-    START("Start Server"),
-    STOP("Stop Server");
+    START("Start server"),
+    STOP("Stop server");
 
     private String text;
 

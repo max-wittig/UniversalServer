@@ -1,4 +1,4 @@
-package com.maxwittig.universalserver.Commands;
+package com.maxwittig.universalserver.commands;
 import com.maxwittig.universalserver.Main;
 import javafx.application.Platform;
 

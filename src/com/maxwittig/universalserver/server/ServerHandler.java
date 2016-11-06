@@ -1,8 +1,8 @@
-package com.maxwittig.universalserver.Server;
+package com.maxwittig.universalserver.server;
 
 
-import com.maxwittig.universalserver.Tools.CommandParser;
-import com.maxwittig.universalserver.Tools.StreamHelper;
+import com.maxwittig.universalserver.tools.CommandParser;
+import com.maxwittig.universalserver.tools.StreamHelper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
@@ -38,7 +38,7 @@ public class ServerHandler
         server.createContext("/", new CustomHttpHandler());
         server.setExecutor(null);
         server.start();
-        System.out.println("Server started on port " + port);
+        System.out.println("server started on port " + port);
 
     }
 
@@ -55,7 +55,7 @@ public class ServerHandler
             public void run()
             {
                 server.stop(1);
-                System.out.println("Server stopped");
+                System.out.println("server stopped");
 
             }
         });

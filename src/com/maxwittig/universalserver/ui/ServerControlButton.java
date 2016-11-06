@@ -1,7 +1,6 @@
-package com.maxwittig.universalserver.UI;
+package com.maxwittig.universalserver.ui;
 
 
-import com.maxwittig.universalserver.ServerControlType;
 import javafx.scene.control.Button;
 
 public class ServerControlButton extends Button

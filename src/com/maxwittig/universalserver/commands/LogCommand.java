@@ -1,4 +1,4 @@
-package com.maxwittig.universalserver.Commands;
+package com.maxwittig.universalserver.commands;
 
 
 public class LogCommand extends Command

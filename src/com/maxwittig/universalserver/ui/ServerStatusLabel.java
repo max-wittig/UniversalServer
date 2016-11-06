@@ -1,7 +1,6 @@
-package com.maxwittig.universalserver.UI;
+package com.maxwittig.universalserver.ui;
 
 
-import com.maxwittig.universalserver.ServerStatusType;
 import javafx.scene.control.Label;
 
 public class ServerStatusLabel extends Label

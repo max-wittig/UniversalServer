@@ -1,4 +1,4 @@
-package com.maxwittig.universalserver;
+package com.maxwittig.universalserver.ui;
 
 
 public enum ServerStatusType

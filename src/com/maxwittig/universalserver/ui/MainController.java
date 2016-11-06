@@ -1,9 +1,8 @@
-package com.maxwittig.universalserver.UI;
+package com.maxwittig.universalserver.ui;
 
 
-import com.maxwittig.universalserver.Server.ServerHandler;
-import com.maxwittig.universalserver.ServerStatusType;
-import com.maxwittig.universalserver.Tools.CommandParser;
+import com.maxwittig.universalserver.server.ServerHandler;
+import com.maxwittig.universalserver.tools.CommandParser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

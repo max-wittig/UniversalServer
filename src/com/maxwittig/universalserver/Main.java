@@ -1,8 +1,8 @@
 package com.maxwittig.universalserver;
 
-import com.maxwittig.universalserver.Server.ServerHandler;
-import com.maxwittig.universalserver.Tools.CommandParser;
-import com.maxwittig.universalserver.UI.MainController;
+import com.maxwittig.universalserver.server.ServerHandler;
+import com.maxwittig.universalserver.tools.CommandParser;
+import com.maxwittig.universalserver.ui.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -40,7 +40,7 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("com/maxwittig/universalserver/UI/MainController.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("com/maxwittig/universalserver/ui/MainController.fxml"));
         AnchorPane root = loader.load();
 
         Scene scene = new Scene(root, 400, 400);
