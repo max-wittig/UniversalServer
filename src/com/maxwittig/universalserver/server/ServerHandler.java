@@ -1,6 +1,7 @@
 package com.maxwittig.universalserver.server;
 
 
+import com.google.common.reflect.ClassPath;
 import com.maxwittig.universalserver.tools.CommandParser;
 import com.maxwittig.universalserver.tools.StreamHelper;
 import com.sun.net.httpserver.HttpExchange;
@@ -9,6 +10,7 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
 
 public class ServerHandler
 {
@@ -39,7 +41,6 @@ public class ServerHandler
         server.setExecutor(null);
         server.start();
         System.out.println("server started on port " + port);
-
     }
 
     public HttpServer getServer()
@@ -56,9 +57,9 @@ public class ServerHandler
             {
                 server.stop(1);
                 System.out.println("server stopped");
-
             }
         });
+        thread.setDaemon(true);
         thread.start();
 
     }
@@ -84,4 +85,5 @@ public class ServerHandler
             os.close();
         }
     }
+
 }

@@ -1,9 +1,11 @@
 package com.maxwittig.universalserver.tools;
 
 
+import com.google.common.reflect.ClassPath;
 import com.maxwittig.universalserver.models.CommandHolder;
 import com.maxwittig.universalserver.commands.Command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CommandParser
@@ -44,7 +46,7 @@ public class CommandParser
                 }
                 else
                 {
-                    response = "This command is blacklisted";
+                    response = "This command is deactivated!";
                 }
             }
             catch (Exception e)
@@ -91,5 +93,24 @@ public class CommandParser
     public ArrayList<String> getCommandBlackList()
     {
         return commandBlackList;
+    }
+
+    public static ArrayList<String> getAllAvailableCommandNames()
+    {
+        ArrayList<String> commandArrayList = new ArrayList<>();
+        try
+        {
+            final ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            ClassPath classPath = ClassPath.from(loader);
+            for (ClassPath.ClassInfo classInfo : classPath.getTopLevelClasses("com.maxwittig.universalserver.commands"))
+            {
+                commandArrayList.add(classInfo.getSimpleName());
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return commandArrayList;
     }
 }

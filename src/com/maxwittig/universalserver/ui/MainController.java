@@ -16,13 +16,13 @@ import javafx.stage.Stage;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 public class MainController
 {
     @FXML private ServerControlButton serverControlButton;
     @FXML private ServerStatusLabel serverStatusLabel;
-    @FXML private Button addBlackListEntryButton;
     @FXML private VBox blackListContainerVBox;
     @FXML private TextField portTextField;
     @FXML private Label ipLabel;
@@ -40,6 +40,44 @@ public class MainController
         Alert alert = new Alert(Alert.AlertType.ERROR, message);
         alert.setHeaderText(null);
         alert.show();
+    }
+
+    private void initCommandList()
+    {
+        ArrayList<String> availableCommands = CommandParser.getAllAvailableCommandNames();
+        for(String commandName : availableCommands)
+        {
+            if(!commandName.equals("Command"))
+            {
+                HBox hBox = new HBox();
+                CheckBox checkBox = new CheckBox(commandName);
+                checkBox.setSelected(true);
+                checkBox.setOnAction(new EventHandler<ActionEvent>()
+                {
+                    @Override
+                    public void handle(ActionEvent event)
+                    {
+                        if(checkBox.isSelected())
+                        {
+                            if(commandParser.getCommandBlackList().contains(checkBox.getText()))
+                            {
+                                commandParser.getCommandBlackList().remove(checkBox.getText());
+                            }
+                        }
+                        else
+                        {
+                            if(!commandParser.getCommandBlackList().contains(checkBox.getText()))
+                            {
+                                commandParser.getCommandBlackList().add(checkBox.getText());
+                            }
+                        }
+                    }
+                });
+                HBox.setMargin(checkBox, new Insets(10, 10, 10, 10));
+                hBox.getChildren().add(checkBox);
+                blackListContainerVBox.getChildren().add(hBox);
+            }
+        }
     }
 
     public void init(Stage stage)
@@ -91,41 +129,6 @@ public class MainController
             }
         });
 
-        addBlackListEntryButton.setOnAction(new EventHandler<ActionEvent>()
-        {
-            @Override
-            public void handle(ActionEvent event)
-            {
-                HBox hBox = new HBox();
-                TextField textField = new TextField();
-                Button setButton = new Button("Set");
-                setButton.setOnAction(new EventHandler<ActionEvent>()
-                {
-                    @Override
-                    public void handle(ActionEvent event)
-                    {
-                        textField.setDisable(true);
-                        serverHandler.getCommandParser().addToBlackList(textField.getText());
-                    }
-                });
-                Button removeButton = new Button("Remove");
-                removeButton.setOnAction(new EventHandler<ActionEvent>()
-                {
-                    @Override
-                    public void handle(ActionEvent event)
-                    {
-                        serverHandler.getCommandParser().removeFromBlackList(textField.getText());
-                        blackListContainerVBox.getChildren().remove(hBox);
-                    }
-                });
-
-                hBox.getChildren().addAll(textField, setButton, removeButton);
-                HBox.setHgrow(textField, Priority.ALWAYS);
-                VBox.setMargin(hBox, new Insets(0, 20, 5, 20));
-                blackListContainerVBox.getChildren().add(hBox);
-
-            }
-        });
         try
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -149,7 +152,7 @@ public class MainController
         {
             e.printStackTrace();
         }
-
+        initCommandList();
     }
 
 
