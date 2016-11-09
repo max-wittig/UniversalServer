@@ -8,11 +8,6 @@ import javafx.scene.media.MediaPlayer;
 public class MusicPlayCommand extends Command
 {
 
-    public MusicPlayCommand()
-    {
-
-    }
-
     @Override
     public void executeSafe(String value)
     {

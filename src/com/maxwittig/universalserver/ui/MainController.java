@@ -120,6 +120,7 @@ public class MainController
                 {
                     int port = Integer.parseInt(portTextField.getText());
                     serverHandler.setPort(port);
+                    serverHandler.restartServer();
                 }
                 catch (NumberFormatException e)
                 {
@@ -168,6 +169,7 @@ public class MainController
             {
                 serverHandler.setHostname((String)ipChoiceBox.getSelectionModel().getSelectedItem());
                 refreshIPLabel();
+                serverHandler.restartServer();
             }
         });
     }

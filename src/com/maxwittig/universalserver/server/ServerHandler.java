@@ -1,7 +1,6 @@
 package com.maxwittig.universalserver.server;
 
 
-import com.google.common.reflect.ClassPath;
 import com.maxwittig.universalserver.tools.CommandParser;
 import com.maxwittig.universalserver.tools.StreamHelper;
 import com.sun.net.httpserver.HttpExchange;
@@ -10,14 +9,29 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
 
 public class ServerHandler
 {
-    private HttpServer server;
+    private HttpServer server = null;
     private int port = 8000;
     private CommandParser commandParser;
     private String hostname = "0.0.0.0";
+    private Thread stopServerThread;
+
+    private void initThread()
+    {
+        stopServerThread = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                server.stop(0);
+                server = null;
+                System.out.println("server stopped");
+            }
+        });
+        stopServerThread.setDaemon(true);
+    }
 
     public ServerHandler(CommandParser commandParser)
     {
@@ -40,7 +54,7 @@ public class ServerHandler
         server.createContext("/", new CustomHttpHandler());
         server.setExecutor(null);
         server.start();
-        System.out.println("server started on port " + port);
+        System.out.println("server listening on " + hostname + ":" + port);
     }
 
     public HttpServer getServer()
@@ -50,18 +64,8 @@ public class ServerHandler
 
     public void stop()
     {
-        Thread thread = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                server.stop(1);
-                System.out.println("server stopped");
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
-
+        initThread();
+        stopServerThread.start();
     }
 
     public CommandParser getCommandParser()
@@ -83,6 +87,35 @@ public class ServerHandler
             OutputStream os = httpExchange.getResponseBody();
             os.write(response.getBytes());
             os.close();
+        }
+    }
+
+    public boolean isServerRunning()
+    {
+        if (server == null)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void restartServer()
+    {
+        if (isServerRunning())
+        {
+            try
+            {
+                stop();
+                if(stopServerThread.isAlive())
+                {
+                    stopServerThread.join();
+                    start();
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 

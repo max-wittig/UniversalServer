@@ -3,9 +3,6 @@ package com.maxwittig.universalserver.commands;
 
 public class VolumeControlCommand extends Command
 {
-    public VolumeControlCommand()
-    {
-    }
 
     @Override
     public void executeSafe(String value)
