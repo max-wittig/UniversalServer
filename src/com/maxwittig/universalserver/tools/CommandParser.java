@@ -80,16 +80,6 @@ public class CommandParser
         commandArrayList = getCommands();
     }
 
-    public void addToBlackList(String blackListed)
-    {
-        commandBlackList.add(blackListed);
-    }
-
-    public void removeFromBlackList(String blackListed)
-    {
-        commandBlackList.remove(blackListed);
-    }
-
     public ArrayList<String> getCommandBlackList()
     {
         return commandBlackList;

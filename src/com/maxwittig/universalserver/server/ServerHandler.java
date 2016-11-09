@@ -17,6 +17,7 @@ public class ServerHandler
     private HttpServer server;
     private int port = 8000;
     private CommandParser commandParser;
+    private String hostname = "0.0.0.0";
 
     public ServerHandler(CommandParser commandParser)
     {
@@ -35,8 +36,7 @@ public class ServerHandler
 
     public void start() throws Exception
     {
-
-        server = HttpServer.create(new InetSocketAddress(port), 0);
+        server = HttpServer.create(new InetSocketAddress(hostname, port), 0);
         server.createContext("/", new CustomHttpHandler());
         server.setExecutor(null);
         server.start();
@@ -86,4 +86,13 @@ public class ServerHandler
         }
     }
 
+    public void setHostname(String hostname)
+    {
+        this.hostname = hostname;
+    }
+
+    public String getHostname()
+    {
+        return hostname;
+    }
 }

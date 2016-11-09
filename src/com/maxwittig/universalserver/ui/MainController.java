@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -26,6 +25,7 @@ public class MainController
     @FXML private VBox blackListContainerVBox;
     @FXML private TextField portTextField;
     @FXML private Label ipLabel;
+    @FXML private ChoiceBox ipChoiceBox;
     private ServerHandler serverHandler;
     private CommandParser commandParser;
 
@@ -129,6 +129,52 @@ public class MainController
             }
         });
 
+        initCommandList();
+        initIPChoiceBox();
+        refreshIPLabel();
+    }
+
+    private void refreshIPLabel()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        if(serverHandler.getHostname().equals("0.0.0.0"))
+        {
+
+            for (String address : getAllPossibleListenAdresses())
+            {
+                stringBuilder.append(address + "\n");
+            }
+        }
+        else
+        {
+            stringBuilder.append(serverHandler.getHostname());
+        }
+        ipLabel.setText(stringBuilder.toString());
+    }
+
+    private void initIPChoiceBox()
+    {
+        ipChoiceBox.getItems().add("0.0.0.0");
+        for(String inetAddress : getAllPossibleListenAdresses())
+        {
+            ipChoiceBox.getItems().add(inetAddress);
+        }
+        ipChoiceBox.getSelectionModel().selectFirst();
+
+        ipChoiceBox.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                serverHandler.setHostname((String)ipChoiceBox.getSelectionModel().getSelectedItem());
+                refreshIPLabel();
+            }
+        });
+    }
+
+    private ArrayList<String> getAllPossibleListenAdresses()
+    {
+        ArrayList<String> inet4Addresses = new ArrayList<>();
         try
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -142,17 +188,16 @@ public class MainController
                     InetAddress i = (InetAddress) ee.nextElement();
                     if(i instanceof Inet4Address)
                     {
-                        stringBuilder.append(i.getHostAddress() + "\n");
+                        inet4Addresses.add(i.getHostAddress());
                     }
                 }
             }
-            ipLabel.setText(stringBuilder.toString());
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        initCommandList();
+        return inet4Addresses;
     }
 
 

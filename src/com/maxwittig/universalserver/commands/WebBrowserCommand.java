@@ -7,10 +7,6 @@ import javafx.stage.Stage;
 
 public class WebBrowserCommand extends Command
 {
-    public WebBrowserCommand()
-    {
-    }
-
     @Override
     public void executeSafe(String value)
     {
