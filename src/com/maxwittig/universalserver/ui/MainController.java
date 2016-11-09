@@ -3,6 +3,7 @@ package com.maxwittig.universalserver.ui;
 
 import com.maxwittig.universalserver.server.ServerHandler;
 import com.maxwittig.universalserver.tools.CommandParser;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -80,7 +82,7 @@ public class MainController
         }
     }
 
-    public void init(Stage stage)
+    private void initServerStatusTab()
     {
         serverControlButton.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -129,10 +131,24 @@ public class MainController
 
             }
         });
+    }
 
+    public void init(Stage stage)
+    {
+        initServerStatusTab();
         initCommandList();
         initIPChoiceBox();
         refreshIPLabel();
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>()
+        {
+            @Override
+            public void handle(WindowEvent event)
+            {
+                stage.close();
+                System.exit(0);
+            }
+        });
     }
 
     private void refreshIPLabel()
